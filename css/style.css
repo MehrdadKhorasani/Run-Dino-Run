@@ -30,10 +30,46 @@ body {
 .game {
   overflow: hidden;
   position: relative;
+  width: 50%;
+  height: 30%;
 }
 
 .score {
   position: absolute;
   font-size: 1.6rem;
   right: 0;
+  top: 0;
+}
+
+.start-dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ground {
+  position: absolute;
+  bottom: 0.1rem;
+}
+
+.dino {
+  position: absolute;
+  left: 2%;
+  bottom: 0.1rem;
+  width: 4.2rem;
+  height: 4.2rem;
+}
+
+.jump-animation {
+  animation: jump 1s;
+}
+
+@keyframes jump {
+  0% {
+    bottom: 0.1rem;
+  }
+  50% {
+    bottom: 8rem;
+  }
 }
