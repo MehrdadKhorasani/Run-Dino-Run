@@ -51,6 +51,7 @@ body {
 .ground {
   position: absolute;
   bottom: 0.1rem;
+  animation: groundMoving 10s linear infinite;
 }
 
 .dino {
@@ -71,5 +72,18 @@ body {
   }
   50% {
     bottom: 8rem;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes groundMoving {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-76%);
   }
 }
