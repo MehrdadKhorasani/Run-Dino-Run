@@ -51,6 +51,9 @@ body {
 .ground {
   position: absolute;
   bottom: 0.1rem;
+}
+
+.groundAnimation {
   animation: groundMoving 10s linear infinite;
 }
 
