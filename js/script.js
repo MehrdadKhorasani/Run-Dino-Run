@@ -18,6 +18,13 @@ function gameStart() {
   playing = true;
   startMSG.classList.add("hidden");
   ground.classList.add("groundAnimation");
+  dino.src = "../img/dino-run.png";
+  setInterval(() => {
+    if (playing === true) {
+      score++;
+    }
+    scoreElement.textContent = score;
+  }, 50);
 }
 
 document.addEventListener("keydown", function (e) {
