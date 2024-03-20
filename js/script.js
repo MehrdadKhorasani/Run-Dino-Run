@@ -12,7 +12,10 @@ function init() {
   startMSG.classList.remove("hidden");
   scoreElement.textContent = score;
   ground.classList.remove("groundAnimation");
+  dino.src = "../img/dino-stationary.png";
 }
+init();
+if (!playing) document.addEventListener("keydown", gameStart);
 
 function gameStart() {
   playing = true;
@@ -39,7 +42,5 @@ document.addEventListener("keydown", function (e) {
       dino.classList.remove("jump-animation");
     }, 1000);
   }
+  if (playing && e.code === "Escape") init();
 });
-
-init();
-document.addEventListener("keydown", gameStart);
