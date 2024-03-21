@@ -90,3 +90,23 @@ body {
     transform: translateX(-76%);
   }
 }
+
+.cactus {
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  bottom: 0.2rem;
+  right: 0;
+  background-image: url("../img/cactus.png");
+  background-size: 4rem 4rem;
+  animation: cactusMoving 2s linear;
+}
+
+@keyframes cactusMoving {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-106rem);
+  }
+}
