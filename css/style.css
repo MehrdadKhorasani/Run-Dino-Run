@@ -69,26 +69,8 @@ body {
   animation: jump 1s;
 }
 
-@keyframes jump {
-  0% {
-    bottom: 0.1rem;
-  }
-  50% {
-    bottom: 8rem;
-  }
-}
-
 .hidden {
   display: none;
-}
-
-@keyframes groundMoving {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-76%);
-  }
 }
 
 .cactus {
@@ -102,11 +84,29 @@ body {
   animation: cactusMoving 2s linear;
 }
 
+@keyframes groundMoving {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-76%);
+  }
+}
+
 @keyframes cactusMoving {
   0% {
     transform: translateX(0);
   }
   100% {
     transform: translateX(-106rem);
+  }
+}
+
+@keyframes jump {
+  0% {
+    bottom: 0.1rem;
+  }
+  50% {
+    bottom: 8rem;
   }
 }

@@ -4,68 +4,76 @@ const startMSG = document.querySelector(".start-dialog");
 const scoreElement = document.querySelector(".score");
 const ground = document.querySelector(".ground");
 
-let playing = false;
-let score = 0;
-
-init();
+let playing, score;
 
 function init() {
   playing = false;
   score = 0;
-  startMSG.classList.remove("hidden");
   scoreElement.textContent = score;
+  startMSG.classList.remove("hidden");
   ground.classList.remove("groundAnimation");
   dino.src = "../img/dino-stationary.png";
-
-  document.addEventListener("keydown", gameStart);
 }
 
-function gameStart() {
+function startGame() {
   playing = true;
   startMSG.classList.add("hidden");
   ground.classList.add("groundAnimation");
   dino.src = "../img/dino-run.png";
-  setInterval(() => {
-    if (playing === true) {
-      score++;
-    }
+  const scoreInterval = setInterval(() => {
+    score++;
     scoreElement.textContent = score;
   }, 50);
-}
 
-document.addEventListener("keydown", function (e) {
-  if (
-    playing &&
-    e.code === "Space" &&
-    !dino.classList.contains("jump-animation")
-  ) {
-    dino.classList.add("jump-animation");
-
-    setTimeout(() => {
-      dino.classList.remove("jump-animation");
-    }, 1000);
+  function endGame() {
+    clearInterval(scoreInterval);
+    init();
   }
-  if (playing && e.code === "Escape") init();
-});
 
-function createCactus() {
-  if (playing) {
+  function dinoJump() {
+    if (!dino.classList.contains("jump-animation")) {
+      dino.classList.add("jump-animation");
+
+      setTimeout(function () {
+        dino.classList.remove("jump-animation");
+      }, 1000);
+    }
+  }
+
+  const cactusMaker = setInterval(() => {
     const cactus = document.createElement("div");
     cactus.classList.add("cactus");
     game.appendChild(cactus);
+    setTimeout(() => game.removeChild(cactus), 1500);
+    loseCheck(cactus);
+  }, 1500);
 
-    setTimeout(() => {
-      game.removeChild(cactus);
-    }, 2000);
+  function loseCheck(cactus) {
+    let dinoBottom = parseInt(
+      window.getComputedStyle(dino).getPropertyValue("bottom")
+    );
+    let cactusLeft = parseInt(
+      window.getComputedStyle(cactus).getPropertyValue("left")
+    );
+    console.log(cactusLeft, dinoBottom);
+    if (cactusLeft < 50 && cactusLeft > 0 && dinoBottom >= 122) {
+      console.log("lose");
+    }
   }
+  document.addEventListener("keydown", function (e) {
+    if (e.code === "Space" && playing) {
+      dinoJump();
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Escape") {
+      endGame();
+    }
+  });
 }
 
-function randomCactus(minTime, maxTime) {
-  if (playing) {
-    const delay = Math.random() * (maxTime - minTime) + minTime;
-    // console.log(Number(delay));
-    setTimeout(createCactus, delay * 1000);
-  }
-}
+init();
 
-setInterval(() => randomCactus(0, 2), 1500);
+document.addEventListener("keydown", () => {
+  if (!playing) startGame();
+});
