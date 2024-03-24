@@ -5,8 +5,6 @@ const scoreElement = document.querySelector(".score");
 const ground = document.querySelector(".ground");
 
 let playing, score;
-let cactusInterval, collisionInterval;
-const cactuses = [];
 
 // initial situation
 function init() {
@@ -30,10 +28,7 @@ function startGame() {
 
   function endGame() {
     clearInterval(scoreInterval);
-    clearInterval(cactusInterval);
-    clearInterval(collisionInterval);
-    cactuses.forEach((cactus) => game.removeChild(cactus));
-    cactuses.length = 0;
+    clearInterval(cactusFunction);
     init();
   }
 
@@ -51,24 +46,18 @@ function startGame() {
     const cactus = document.createElement("div");
     cactus.classList.add("cactus");
     game.appendChild(cactus);
-    cactuses.push(cactus);
-    setTimeout(() => {
-      if (playing) game.removeChild(cactus);
-      const index = cactuses.indexOf(cactus);
-      if (index !== -1) cactuses.splice(index, 1);
-    }, 1500);
+    setTimeout(() => game.removeChild(cactus), 1500);
   }
 
-  function randomCactus() {
-    if (playing) {
-      createCactus();
-      const delay = Math.random() * (6 - 0) + 0;
-      setTimeout(randomCactus, delay * 1000);
-    }
+  function randomCactus(minTime, maxTime) {
+    const delay = Math.random() * (maxTime - minTime) + minTime;
+
+    setTimeout(createCactus, delay * 1000);
   }
 
   function checkLose() {
     const dinoRect = dino.getBoundingClientRect();
+    const cactuses = document.querySelectorAll(".cactus");
     cactuses.forEach((cactus) => {
       const cactusRect = cactus.getBoundingClientRect();
       if (
@@ -94,8 +83,8 @@ function startGame() {
     }
   });
 
-  cactusInterval = setTimeout(randomCactus, 1500);
-  collisionInterval = setInterval(checkLose, 100);
+  cactusFunction = setInterval(() => randomCactus(0, 6), 1500);
+  collisionFunction = setInterval(() => checkLose(), 100);
 }
 
 init();
