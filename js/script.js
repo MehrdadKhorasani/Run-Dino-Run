@@ -8,7 +8,6 @@ let playing, score;
 let cactusInterval, collisionInterval;
 const cactuses = [];
 
-// initial situation
 function init() {
   playing = false;
   score = 0;
@@ -53,7 +52,7 @@ function startGame() {
     game.appendChild(cactus);
     cactuses.push(cactus);
     setTimeout(() => {
-      if (playing) game.removeChild(cactus);
+      game.removeChild(cactus);
       const index = cactuses.indexOf(cactus);
       if (index !== -1) cactuses.splice(index, 1);
     }, 1500);
@@ -62,7 +61,7 @@ function startGame() {
   function randomCactus() {
     if (playing) {
       createCactus();
-      const delay = Math.random() * (6 - 0) + 0;
+      const delay = Math.random() * (5 - 0.5) + 0.5;
       setTimeout(randomCactus, delay * 1000);
     }
   }
@@ -82,19 +81,16 @@ function startGame() {
     });
   }
 
-  // game handlers
   document.addEventListener("keydown", function (e) {
     if (e.code === "Space" && playing) {
       dinoJump();
     }
-  });
-  document.addEventListener("keydown", (e) => {
     if (e.code === "Escape") {
       endGame();
     }
   });
 
-  cactusInterval = setTimeout(randomCactus, 1500);
+  cactusInterval = setTimeout(randomCactus, 1000);
   collisionInterval = setInterval(checkLose, 100);
 }
 
