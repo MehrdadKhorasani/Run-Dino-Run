@@ -1,3 +1,5 @@
+"use strict";
+
 const game = document.querySelector(".game");
 const dino = document.querySelector("[data-dino]");
 const startMSG = document.querySelector(".start-dialog");
