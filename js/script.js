@@ -35,6 +35,7 @@ function startGame() {
     clearInterval(collisionInterval);
     cactuses.forEach((cactus) => game.removeChild(cactus));
     cactuses.length = 0;
+    document.removeEventListener("keydown", handleKeyPress);
     init();
   }
 
@@ -83,15 +84,15 @@ function startGame() {
     });
   }
 
-  document.addEventListener("keydown", function (e) {
+  function handleKeyPress(e) {
     if (e.code === "Space" && playing) {
       dinoJump();
-    }
-    if (e.code === "Escape" && playing) {
+    } else if (e.code === "Escape" && playing) {
       endGame();
     }
-  });
+  }
 
+  document.addEventListener("keydown", handleKeyPress);
   cactusInterval = setTimeout(randomCactus, 1000);
   collisionInterval = setInterval(checkLose, 100);
 }
@@ -99,5 +100,7 @@ function startGame() {
 init();
 
 document.addEventListener("keydown", () => {
-  if (!playing) startGame();
+  if (!playing) {
+    startGame();
+  }
 });
