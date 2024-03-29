@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 *,
 *::after,
 *::before {
@@ -9,7 +11,7 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%; /*font-size: 10px === 1rem*/
+  font-size: 62.5%;
 }
 
 body {
@@ -31,6 +33,7 @@ body {
   overflow: hidden;
   position: relative;
   width: 50%;
+  max-width: 90rem;
   height: 30%;
 }
 
@@ -41,7 +44,7 @@ body {
   top: 0;
 }
 
-.start-dialog {
+.start-message {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -98,7 +101,7 @@ body {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-106rem);
+    transform: translateX(-120rem);
   }
 }
 

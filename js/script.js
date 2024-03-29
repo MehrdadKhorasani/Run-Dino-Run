@@ -2,7 +2,7 @@
 
 const game = document.querySelector(".game");
 const dino = document.querySelector("[data-dino]");
-const startMSG = document.querySelector(".start-dialog");
+const startMSG = document.querySelector(".start-message");
 const scoreElement = document.querySelector(".score");
 const ground = document.querySelector(".ground");
 
@@ -87,7 +87,7 @@ function startGame() {
     if (e.code === "Space" && playing) {
       dinoJump();
     }
-    if (e.code === "Escape") {
+    if (e.code === "Escape" && playing) {
       endGame();
     }
   });
