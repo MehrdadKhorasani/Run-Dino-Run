@@ -6,8 +6,7 @@ const startMSG = document.querySelector(".start-message");
 const scoreElement = document.querySelector(".score");
 const ground = document.querySelector(".ground");
 
-let playing, score;
-let cactusInterval, collisionInterval;
+let playing, score, cactusInterval, collisionInterval;
 const cactuses = [];
 
 function init() {
