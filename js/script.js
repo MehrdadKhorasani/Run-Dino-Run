@@ -63,7 +63,7 @@ function startGame() {
   function randomCactus() {
     if (playing) {
       createCactus();
-      const delay = Math.random() * (5 - 0.5) + 0.5;
+      const delay = Math.ceil(Math.random() * 5);
       setTimeout(randomCactus, delay * 1000);
     }
   }
