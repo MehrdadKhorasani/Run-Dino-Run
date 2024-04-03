@@ -1,12 +1,12 @@
 "use strict";
 
 const game = document.querySelector(".game");
-const dino = document.querySelector("[data-dino]");
-const startMSG = document.querySelector(".start-message");
+const dino = document.querySelector(".dino");
+const startMSG = document.querySelector(".message");
 const scoreElement = document.querySelector(".score");
 const ground = document.querySelector(".ground");
 
-let playing, score, cactusInterval, collisionInterval;
+let playing, score;
 const cactuses = [];
 
 function init() {
@@ -15,10 +15,11 @@ function init() {
   scoreElement.textContent = score;
   startMSG.classList.remove("hidden");
   ground.classList.remove("groundAnimation");
-  dino.src = "../img/dino-stationary.png";
+  dino.src = "../img/dino-stop.png";
 }
 
 function startGame() {
+  let collisionInterval;
   playing = true;
   startMSG.classList.add("hidden");
   ground.classList.add("groundAnimation");
@@ -30,7 +31,6 @@ function startGame() {
 
   function endGame() {
     clearInterval(scoreInterval);
-    clearInterval(cactusInterval);
     clearInterval(collisionInterval);
     cactuses.forEach((cactus) => game.removeChild(cactus));
     cactuses.length = 0;
@@ -56,7 +56,7 @@ function startGame() {
     setTimeout(() => {
       game.removeChild(cactus);
       const index = cactuses.indexOf(cactus);
-      if (index !== -1) cactuses.splice(index, 1);
+      if (index !== -1) cactuses.splice(index, 10);
     }, 1500);
   }
 
@@ -92,7 +92,7 @@ function startGame() {
   }
 
   document.addEventListener("keydown", handleKeyPress);
-  cactusInterval = setTimeout(randomCactus, 1000);
+  setTimeout(randomCactus, 1000);
   collisionInterval = setInterval(checkLose, 100);
 }
 
