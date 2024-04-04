@@ -2,8 +2,8 @@
 
 const game = document.querySelector(".game");
 const dino = document.querySelector(".dino");
-const startMSG = document.querySelector(".message");
-const scoreElement = document.querySelector(".score");
+const message = document.querySelector(".message");
+const scoreEL = document.querySelector(".score");
 const ground = document.querySelector(".ground");
 
 let playing, score;
@@ -12,21 +12,21 @@ const cactuses = [];
 function init() {
   playing = false;
   score = 0;
-  scoreElement.textContent = score;
-  startMSG.classList.remove("hidden");
-  ground.classList.remove("groundAnimation");
+  scoreEL.textContent = score;
+  message.classList.remove("hidden");
+  ground.classList.remove("ground-animation");
   dino.src = "../img/dino-stop.png";
 }
 
 function startGame() {
   let collisionInterval;
   playing = true;
-  startMSG.classList.add("hidden");
-  ground.classList.add("groundAnimation");
+  message.classList.add("hidden");
+  ground.classList.add("ground-animation");
   dino.src = "../img/dino-run.png";
   const scoreInterval = setInterval(() => {
     score++;
-    scoreElement.textContent = score;
+    scoreEL.textContent = score;
   }, 50);
 
   function endGame() {

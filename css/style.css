@@ -56,8 +56,8 @@ body {
   bottom: 0.1rem;
 }
 
-.groundAnimation {
-  animation: groundMoving 10s linear infinite;
+.ground-animation {
+  animation: ground-moving 10s linear infinite;
 }
 
 .dino {
@@ -84,10 +84,10 @@ body {
   right: 0;
   background-image: url("../img/cactus.png");
   background-size: 4rem 4rem;
-  animation: cactusMoving 2s linear;
+  animation: cactus-moving 2s linear;
 }
 
-@keyframes groundMoving {
+@keyframes ground-moving {
   0% {
     transform: translateX(0);
   }
@@ -96,7 +96,7 @@ body {
   }
 }
 
-@keyframes cactusMoving {
+@keyframes cactus-moving {
   0% {
     transform: translateX(0);
   }
