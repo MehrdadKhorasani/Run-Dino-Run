@@ -15,16 +15,16 @@ function init() {
   scoreEL.textContent = score;
   message.classList.remove("hidden");
   ground.classList.remove("ground-animation");
-  dino.src = "../img/dino-stop.png";
+  dino.src = "img/dino-stop.png";
 }
 
 function startGame() {
-  let collisionInterval;
+  let collisionInterval, scoreInterval;
   playing = true;
   message.classList.add("hidden");
   ground.classList.add("ground-animation");
-  dino.src = "../img/dino-run.png";
-  const scoreInterval = setInterval(() => {
+  dino.src = "img/dino-run.png";
+  scoreInterval = setInterval(() => {
     score++;
     scoreEL.textContent = score;
   }, 50);
