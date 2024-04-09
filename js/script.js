@@ -56,7 +56,7 @@ function startGame() {
     setTimeout(() => {
       game.removeChild(cactus);
       const index = cactuses.indexOf(cactus);
-      if (index !== -1) cactuses.splice(index, 10);
+      index !== -1 && cactuses.splice(index, 10);
     }, 1500);
   }
 
